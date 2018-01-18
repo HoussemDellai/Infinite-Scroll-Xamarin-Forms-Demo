@@ -9,6 +9,7 @@ namespace InfiniteScrollingDemo
     {
         private bool _isBusy;
         private const int PageSize = 10;
+        readonly DataService _dataService = new DataService();
 
         public InfiniteScrollCollection<string> Items { get; }
 
@@ -32,8 +33,8 @@ namespace InfiniteScrollingDemo
                     
                     // load the next page
                     var page = Items.Count / PageSize;
-                    var dataService = new DataService();
-                    var items = await dataService.GetItemsAsync(page + 1, PageSize);
+                    
+                    var items = await _dataService.GetItemsAsync(page + 1, PageSize);
 
                     IsBusy = false;
 
@@ -47,8 +48,8 @@ namespace InfiniteScrollingDemo
 
         private async Task DownloadDataAsync()
         {
-            var dataService = new DataService();
-            var items = await dataService.GetItemsAsync(0, PageSize);
+            var items = await _dataService.GetItemsAsync(0, PageSize);
+
             Items.AddRange(items);
         }
 
