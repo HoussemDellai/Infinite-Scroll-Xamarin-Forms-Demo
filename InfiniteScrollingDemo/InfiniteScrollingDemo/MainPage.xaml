@@ -7,8 +7,8 @@
 
     <StackLayout>
 
-        <Label Text="Infinite Scroll" FontSize="50" TextColor="DodgerBlue" Margin="20,0" />
-        <Label Text="Xamarin.Forms" FontSize="46" TextColor="DeepPink" Margin="20,0" />
+        <Label Text="Infinite Scroll" FontSize="52" TextColor="DeepPink" Margin="20,0" />
+        <Label Text="Xamarin.Forms" FontSize="46" TextColor="DodgerBlue" Margin="20,0" />
 
         <ListView ItemsSource="{Binding Items}" CachingStrategy="RecycleElement" HasUnevenRows="True">
 

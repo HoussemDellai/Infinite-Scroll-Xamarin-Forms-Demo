@@ -34,12 +34,16 @@ namespace InfiniteScrollingDemo
                     // load the next page
                     var page = Items.Count / PageSize;
                     
-                    var items = await _dataService.GetItemsAsync(page + 1, PageSize);
+                    var items = await _dataService.GetItemsAsync(page, PageSize);
 
                     IsBusy = false;
 
                     // return the items that need to be added
                     return items;
+                },
+                OnCanLoadMore = () =>
+                {
+                    return Items.Count < 44;
                 }
             };
 
@@ -48,7 +52,7 @@ namespace InfiniteScrollingDemo
 
         private async Task DownloadDataAsync()
         {
-            var items = await _dataService.GetItemsAsync(0, PageSize);
+            var items = await _dataService.GetItemsAsync(pageIndex:0, pageSize:PageSize);
 
             Items.AddRange(items);
         }
